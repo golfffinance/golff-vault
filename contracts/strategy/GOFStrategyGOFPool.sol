@@ -343,8 +343,8 @@ contract GOFStrategyGOFPool {
         uint _want = IERC20(want).balanceOf(address(this));
         if (_want > 0) {
             IERC20(want).safeApprove(pool, 0);
-            IERC20(want).safeApprove(pool, IERC20(want).balanceOf(address(this)));
-            IGOFPool(pool).stake(IERC20(want).balanceOf(address(this)));
+            IERC20(want).safeApprove(pool, _want);
+            IGOFPool(pool).stake(_want);
         }
     }
     

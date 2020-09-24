@@ -507,7 +507,7 @@ contract GOFVault is ERC20, ERC20Detailed{
      */
     function earned(address user) public view returns (uint256) {
         uint256 _reward = global .earningsPerShare .mul(userAssetsMapping[user].stakeAmount) .div(magnitude);
-        if (_reward < userAssetsMapping[user].payout) {
+        if (_reward <= userAssetsMapping[user].payout) {
             return 0;
         } else {
             return _reward.sub(userAssetsMapping[user].payout);
@@ -518,7 +518,7 @@ contract GOFVault is ERC20, ERC20Detailed{
         uint256 _earningsPerShare = global.earningsPerShare.add( _pendingBalance.mul(magnitude).div(global.totalStakeAmount) );
         uint256 _reward = _earningsPerShare .mul(userAssetsMapping[user].stakeAmount) .div(magnitude);
         _reward = _reward.sub(earned(user));
-        if (_reward < userAssetsMapping[user].payout) {
+        if (_reward <= userAssetsMapping[user].payout) {
             return 0;
         } else {
             return _reward.sub(userAssetsMapping[user].payout);
