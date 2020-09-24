@@ -415,7 +415,7 @@ contract GOFStrategyCurve {
 
     // Harvest 
     function harvest() public {
-        require(!Address.isContract(msg.sender), "Golff:!contract");
+        require(msg.sender == tx.origin, "Golff:No harvest from contract");
         CurveMinter(minter).mint(pool);// 获取Crv
         address _vault = IGOFStrategyController(controller).vaults(address(want));
         require(_vault != address(0), "Golff:!vault"); // additional protection so we don't burn the funds
