@@ -310,7 +310,7 @@ contract GOFStrategyGrapPool {
     address public output;
     string public getName;
 
-    address constant public gof = address(0x9B101A705e19D291ce99d5e92d0a3aC1082c326f);
+    address constant public gof = address(0x488E0369f9BC5C40C002eA7c1fe4fd01A198801c);
     address constant public uni = address(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
     address constant public weth = address(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);
     address constant public dai = address(0x6B175474E89094C44Da98b954EedeAC495271d0F);

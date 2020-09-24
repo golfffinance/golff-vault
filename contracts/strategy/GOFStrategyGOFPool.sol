@@ -298,7 +298,7 @@ contract GOFStrategyGOFPool {
     address public output;
     string public getName;
 
-    address constant public gof = address(0x9B101A705e19D291ce99d5e92d0a3aC1082c326f);
+    address constant public gof = address(0x488E0369f9BC5C40C002eA7c1fe4fd01A198801c);
     address constant public unirouter = address(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
 
     uint public fee = 100;

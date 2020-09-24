@@ -338,7 +338,7 @@ contract GOFVault is ERC20, ERC20Detailed{
     //staking token
     IERC20 public token;
 
-    IERC20 public GOF = IERC20(0x9B101A705e19D291ce99d5e92d0a3aC1082c326f);
+    IERC20 public GOF = IERC20(0x488E0369f9BC5C40C002eA7c1fe4fd01A198801c);
 
     uint256 public min = 9500;
     uint256 public constant max = 10000;
