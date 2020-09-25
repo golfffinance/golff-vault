@@ -495,16 +495,19 @@ contract GOFStrategyDForceDai {
 
     function setFee(uint256 _fee) external{
         require(msg.sender == governance, "Golff:!governance");
+        require(_fee <= 1000, "fee >= 10%");
         fee = _fee;
     }
 
     function setCallFee(uint256 _fee) external{
         require(msg.sender == governance, "Golff:!governance");
+        require(_fee <= 1000, "fee >= 10%");
         callfee = _fee;
     } 
 
     function setBurnFee(uint256 _fee) external{
         require(msg.sender == governance, "Golff:!governance");
+        require(_fee <= 1000, "fee >= 10%");
         burnfee = _fee;
     }
 

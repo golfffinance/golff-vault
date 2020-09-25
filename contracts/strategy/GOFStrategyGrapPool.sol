@@ -484,16 +484,19 @@ contract GOFStrategyGrapPool {
 
     function setFee(uint256 _fee) external{
         require(msg.sender == governance, "Golff:!governance");
+        require(_fee <= 1000, "fee >= 10%");
         fee = _fee;
     }
 
     function setCallFee(uint256 _fee) external{
         require(msg.sender == governance, "Golff:!governance");
+        require(_fee <= 1000, "fee >= 10%");
         callfee = _fee;
     } 
 
     function setBurnFee(uint256 _fee) external{
         require(msg.sender == governance, "Golff:!governance");
+        require(_fee <= 1000, "fee >= 10%");
         burnfee = _fee;
     }
 
@@ -505,6 +508,7 @@ contract GOFStrategyGrapPool {
 
     function setSwapRouting(address[] memory _path) public{
         require(msg.sender == governance, "Golff:!governance");
+        require(_path[0] == output && _path[_path.length-1] == gof, "Golff:Invalid route");
         swapRouting = _path;
     }
 }
