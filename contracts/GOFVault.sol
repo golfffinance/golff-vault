@@ -436,7 +436,11 @@ contract GOFVault is ERC20, ERC20Detailed{
      */
     function deposit(uint256 _amount) public {
         //用户授权，将资金存入Vault
+        uint256 _before = token.balanceOf(address(this));
         token.safeTransferFrom(msg.sender, address(this), _amount);
+        uint256 _after = token.balanceOf(address(this));
+        _amount = _after.div(_before);
+        
         _mint(msg.sender, _amount);
 
         UserAssets storage _userAssets = userAssetsMapping[msg.sender];
