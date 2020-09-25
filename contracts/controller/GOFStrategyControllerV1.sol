@@ -231,6 +231,10 @@ contract ERC20Detailed is IERC20 {
     }
 }
 
+interface IGOFVault {
+    function stakeToken() external view returns (address);
+}
+
 /**
  * Vault Strategy Interface
  */
@@ -358,6 +362,7 @@ contract GOFStrategyControllerV1 {
     function setStrategy(address _token, address _strategy) public {
         require(msg.sender == strategist || msg.sender == governance, "Golff:!strategist");
         require(approvedStrategies[_token][_strategy] == true, "Golff:!approved");
+        require(IGOFVault(vaults[_token]).stakeToken() == IGOFStrategy(_strategy).want(), "Golff:Different token");
         address _current = strategies[_token];
         //之前存在策略,那就先把所有的资金提出来
         if (_current != address(0)) {

@@ -379,6 +379,10 @@ contract GOFVault is ERC20, ERC20Detailed{
         controller = _controller;
     }
 
+    function stakeToken() external view returns (address) {
+        return address(token);
+    }
+
     function balance() public view returns (uint256) {
         return token.balanceOf(address(this)).add( IGOFStrategyController(controller).balanceOf(address(token)) );
     }
