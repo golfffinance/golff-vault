@@ -313,8 +313,6 @@ contract GOFStrategyGOFPool {
     address public controller;
 
     address  public want;
-    
-    address[] public swapRouting;
 
     constructor(address _controller, address _output, address _pool, address _want) public {
         governance = tx.origin;
@@ -478,8 +476,4 @@ contract GOFStrategyGOFPool {
         withdrawalFee = _withdrawalFee;
     }
 
-    function setSwapRouting(address[] memory _path) public{
-        require(msg.sender == governance, "Golff:!governance");
-        swapRouting = _path;
-    }
 }
