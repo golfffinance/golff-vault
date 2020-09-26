@@ -399,7 +399,7 @@ contract GOFStrategyCurve {
         //将资金转入Vault
         address _vault = IGOFStrategyController(controller).vaults(address(want));
         require(_vault != address(0), "Golff:!vault"); // additional protection so we don't burn the funds
-        IERC20(want).safeTransfer(_vault, _amount);
+        IERC20(want).safeTransfer(_vault, _amount.sub(_fee));
     }
 
     // Withdraw all funds, normally used when migrating strategies
