@@ -439,7 +439,7 @@ contract GOFVault is ERC20, ERC20Detailed{
         uint256 _before = token.balanceOf(address(this));
         token.safeTransferFrom(msg.sender, address(this), _amount);
         uint256 _after = token.balanceOf(address(this));
-        _amount = _after.div(_before);
+        _amount = _after.sub(_before);
         
         _mint(msg.sender, _amount);
 
