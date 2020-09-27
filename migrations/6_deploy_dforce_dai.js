@@ -17,7 +17,7 @@ module.exports = migration;
 
 // ++++++++++++++++  Deploy Functions ++++++++++++++++ 
 async function deployToken(deployer, network, accounts) {
-  let rewardsAddress = "";
+  let rewardsAddress = "0x44Bdc0545f8e9e1908cF6527BE4fC301851c42bf";
   let stakeTokenAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
   let poolAddress = "0xD2fA07cD6Cd4A5A96aa86BacfA6E50bB3aaDBA8B";
   let dtoken = "0x02285AcaafEB533e03A7306C55EC031297df9224"; // 质押币种充到此地址兑换为此代币再质押到对应池子
