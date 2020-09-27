@@ -324,7 +324,7 @@ contract GOFStrategyCurve {
     address public constant gof = address(0x488E0369f9BC5C40C002eA7c1fe4fd01A198801c);
 
     uint256 public fee = 100;//1% insure
-    uint256 public burnfee = 300;//3% burn
+    uint256 public foundationfee = 300;//3% 
     uint256 public callfee = 100;//1% harvest
     uint256 public constant max = 10000;
 
@@ -438,10 +438,10 @@ contract GOFStrategyCurve {
         if (b > 0) {
             uint256 _fee = b.mul(fee).div(max);
             uint256 _callfee = b.mul(callfee).div(max);
-            uint256 _burnfee = b.mul(burnfee).div(max);
+            uint256 _foundationfee = b.mul(foundationfee).div(max);
             IERC20(gof).safeTransfer(IGOFStrategyController(controller).rewards(),_fee); // 1% insurance
             IERC20(gof).safeTransfer(msg.sender, _callfee); //call fee 1%
-            IERC20(gof).safeTransfer(address(0x6666666666666666666666666666666666666666), _burnfee); //burn fee 3%
+            IERC20(gof).safeTransfer(address(0x1250E38187Ff89d05f99F3fa0E324241bbE2120C), _foundationfee); 
 
             IERC20(gof).safeApprove(_vault, 0);
             IERC20(gof).safeApprove(_vault, IERC20(gof).balanceOf(address(this)));
@@ -503,10 +503,10 @@ contract GOFStrategyCurve {
         callfee = _fee;
     }
 
-    function setBurnFee(uint256 _fee) external {
+    function setFoundationFee(uint256 _fee) external {
         require(msg.sender == governance, "Golff:!governance");
         require(_fee <= 1000, "fee >= 10%");
-        burnfee = _fee;
+        foundationfee = _fee;
     }
 
     function setWithdrawalFee(uint256 _withdrawalFee) external {
