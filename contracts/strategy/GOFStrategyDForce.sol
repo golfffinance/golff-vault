@@ -336,7 +336,7 @@ contract GOFStrategyDForceDai {
         getName = string(
             abi.encodePacked("golff:Strategy:", 
                 abi.encodePacked(ERC20Detailed(want).name(),
-                    abi.encodePacked(":",ERC20Detailed(df).name())
+                "DForce Token"
                 )
             ));
     }
