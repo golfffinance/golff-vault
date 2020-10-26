@@ -256,14 +256,14 @@ contract VaultEth is ERC20, ERC20Detailed {
     address public governance;
     address public controller;
 
-    constructor (address _token) public ERC20Detailed(
+    constructor (address _token, address _controller) public ERC20Detailed(
         string(abi.encodePacked("golff ", ERC20Detailed(_token).name())),
         "G-V2WETH",
         ERC20Detailed(_token).decimals()
     ) {
         token = IERC20(_token);
         governance = msg.sender;
-        controller = 0xC209784b2E88D678041830a934C5A0cB25a14c0d;
+        controller = _controller;
     }
 
     function stakeToken() external view returns (address) {

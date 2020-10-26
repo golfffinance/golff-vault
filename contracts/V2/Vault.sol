@@ -247,14 +247,14 @@ contract GOFVaultV2 is ERC20, ERC20Detailed {
     address public governance;
     address public controller;
     
-    constructor (address _token, string memory _symbol, uint _earnLowerlimit) public ERC20Detailed(
+    constructor (address _token, string memory _symbol, address _controller, uint _earnLowerlimit) public ERC20Detailed(
         string(abi.encodePacked("golff ", ERC20Detailed(_token).name())),
         string(abi.encodePacked("G-V2", _symbol)),
         ERC20Detailed(_token).decimals()
     ) {
         token = IERC20(_token);
         governance = tx.origin;
-        controller = 0x8C2a19108d8F6aEC72867E9cfb1bF517601b515f;
+        controller = _controller;
         earnLowerlimit = _earnLowerlimit;
     }
     
