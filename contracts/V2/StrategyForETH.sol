@@ -291,7 +291,7 @@ contract StrategyForETH {
     }
     
     function harvest() public {
-        require(msg.sender == strategyDev,"!");
+        require(msg.sender == strategyDev,"Golff:!strategyDev");
         ForReward(fortube_reward).claimReward();
         doswap();
         dosplit();//分GOF
@@ -352,8 +352,8 @@ contract StrategyForETH {
     }
     
     function setFees(uint256 _fee, uint256 _callfee, uint256 _burnfee, uint256 _foundationfee) external{
-        require(msg.sender == governance, "golff:!governance");
-        require(max == _fee.add(_callfee).add(_burnfee).add(_foundationfee), "Invalid fees");
+        require(msg.sender == governance, "Golff:!governance");
+        require(max == _fee.add(_callfee).add(_burnfee).add(_foundationfee), "Golff:Invalid fees");
 
         fee = _fee;
         callfee = _callfee;
@@ -373,12 +373,12 @@ contract StrategyForETH {
     }
 
     function setBurnAddress(address _burnAddress) public {
-        require(msg.sender == governance, "golff:!governance");
+        require(msg.sender == governance, "Golff:!governance");
         burnAddress = _burnAddress;
     }
 
     function setStrategyDev(address _strategyDev) public {
-        require(msg.sender == governance, "golff:!governance");
+        require(msg.sender == governance, "Golff:!governance");
         strategyDev = _strategyDev;
     }
 

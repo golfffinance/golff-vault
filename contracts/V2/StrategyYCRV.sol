@@ -251,10 +251,10 @@ contract StrategyCurveYCRVVoter {
     // Controller only function for creating additional rewards from dust
     function withdraw(IERC20 _asset) external returns (uint balance) {
         require(msg.sender == controller, "Golff:!controller");
-        require(want != address(_asset), "want");
-        require(crv != address(_asset), "crv");
-        require(ydai != address(_asset), "ydai");
-        require(dai != address(_asset), "dai");
+        require(want != address(_asset), "Golff:want");
+        require(crv != address(_asset), "Golff:crv");
+        require(ydai != address(_asset), "Golff:ydai");
+        require(dai != address(_asset), "Golff:dai");
         balance = _asset.balanceOf(address(this));
         _asset.safeTransfer(controller, balance);
     }
@@ -298,7 +298,7 @@ contract StrategyCurveYCRVVoter {
     }
     
     function harvest() public {
-        require(msg.sender == strategyDev,"!");
+        require(msg.sender == strategyDev,"Golff:!strategyDev");
         Mintr(mintr).mint(pool);
         
         doswap();
@@ -366,8 +366,8 @@ contract StrategyCurveYCRVVoter {
     }
     
     function setFees(uint256 _fee, uint256 _callfee, uint256 _burnfee, uint256 _foundationfee) external{
-        require(msg.sender == governance, "golff:!governance");
-        require(max == _fee.add(_callfee).add(_burnfee).add(_foundationfee), "Invalid fees");
+        require(msg.sender == governance, "Golff:!governance");
+        require(max == _fee.add(_callfee).add(_burnfee).add(_foundationfee), "Golff:Invalid fees");
 
         fee = _fee;
         callfee = _callfee;
@@ -387,12 +387,12 @@ contract StrategyCurveYCRVVoter {
     }
 
     function setBurnAddress(address _burnAddress) public {
-        require(msg.sender == governance, "golff:!governance");
+        require(msg.sender == governance, "Golff:!governance");
         burnAddress = _burnAddress;
     }
 
     function setStrategyDev(address _strategyDev) public {
-        require(msg.sender == governance, "golff:!governance");
+        require(msg.sender == governance, "Golff:!governance");
         strategyDev = _strategyDev;
     }
 

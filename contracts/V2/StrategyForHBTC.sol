@@ -245,18 +245,18 @@ contract StrategyFortube {
     
     // Controller only function for creating additional rewards from dust
     function withdraw(IERC20 _asset) external returns (uint balance) {
-        require(msg.sender == controller, "golff:!controller");
-        require(want != address(_asset), "golff:want");
-        require(wbtc != address(_asset), "golff:wbtc");
+        require(msg.sender == controller, "Golff:!controller");
+        require(want != address(_asset), "Golff:want");
+        require(wbtc != address(_asset), "Golff:wbtc");
         address _controller = For(fortube).controller();
-        require(IBankController(_controller).getFTokeAddress(want) != address(_asset),"golff:fToken");
+        require(IBankController(_controller).getFTokeAddress(want) != address(_asset),"Golff:fToken");
         balance = _asset.balanceOf(address(this));
         _asset.safeTransfer(controller, balance);
     }
     
     // Withdraw partial funds, normally used with a vault withdrawal
     function withdraw(uint _amount) external {
-        require(msg.sender == controller, "golff:!controller");
+        require(msg.sender == controller, "Golff:!controller");
         uint _balance = IERC20(want).balanceOf(address(this));
         if (_balance < _amount) {
             _amount = _withdrawSome(_amount.sub(_balance));
@@ -271,20 +271,20 @@ contract StrategyFortube {
         
         
         address _vault = Controller(controller).vaults(address(want));
-        require(_vault != address(0), "golff:!vault"); // additional protection so we don't burn the funds
+        require(_vault != address(0), "Golff:!vault"); // additional protection so we don't burn the funds
         IERC20(want).safeTransfer(_vault, _amount.sub(_fee));
     }
     
     // Withdraw all funds, normally used when migrating strategies
     function withdrawAll() external returns (uint balance) {
-        require(msg.sender == controller || msg.sender == governance,"golff:!governance");
+        require(msg.sender == controller || msg.sender == governance,"Golff:!governance");
         _withdrawAll();
         
         
         balance = IERC20(want).balanceOf(address(this));
         
         address _vault = Controller(controller).vaults(address(want));
-        require(_vault != address(0), "golff:!vault"); // additional protection so we don't burn the funds
+        require(_vault != address(0), "Golff:!vault"); // additional protection so we don't burn the funds
         IERC20(want).safeTransfer(_vault, balance);
     }
     
@@ -296,7 +296,7 @@ contract StrategyFortube {
     }
     
     function harvest() public {
-        require(msg.sender == strategyDev,"!");
+        require(msg.sender == strategyDev,"Golff:!strategyDev");
         ForReward(fortube_reward).claimReward();
         doswap();
         dosplit();//分gof
@@ -355,18 +355,18 @@ contract StrategyFortube {
     }
     
     function setGovernance(address _governance) external {
-        require(msg.sender == governance, "golff:!governance");
+        require(msg.sender == governance, "Golff:!governance");
         governance = _governance;
     }
     
     function setController(address _controller) external {
-        require(msg.sender == governance, "golff:!governance");
+        require(msg.sender == governance, "Golff:!governance");
         controller = _controller;
     }
 
     function setFees(uint256 _fee, uint256 _callfee, uint256 _burnfee, uint256 _foundationfee) external{
-        require(msg.sender == governance, "golff:!governance");
-        require(max == _fee.add(_callfee).add(_burnfee).add(_foundationfee), "Invalid fees");
+        require(msg.sender == governance, "Golff:!governance");
+        require(max == _fee.add(_callfee).add(_burnfee).add(_foundationfee), "Golff:Invalid fees");
 
         fee = _fee;
         callfee = _callfee;
@@ -375,32 +375,32 @@ contract StrategyFortube {
     }
 
     function setFoundationAddress(address _foundationAddress) public{
-        require(msg.sender == governance, "golff:!governance");
+        require(msg.sender == governance, "Golff:!governance");
         foundationAddress = _foundationAddress;
     }
 
     function setWithdrawalFee(uint _withdrawalFee) external {
-        require(msg.sender == governance, "v!governance");
+        require(msg.sender == governance, "Golff:!governance");
         require(_withdrawalFee <=100,"fee > 1%"); //max:1%
         withdrawalFee = _withdrawalFee;
     }
         
     function setBurnAddress(address _burnAddress) public {
-        require(msg.sender == governance, "golff:!governance");
+        require(msg.sender == governance, "Golff:!governance");
         burnAddress = _burnAddress;
     }
 
     function setStrategyDev(address _strategyDev) public {
-        require(msg.sender == governance, "golff:!governance");
+        require(msg.sender == governance, "Golff:!governance");
         strategyDev = _strategyDev;
     }
 
     function setSwap2GOF(address[] memory _path) public{
-        require(msg.sender == governance, "golff:!governance");
+        require(msg.sender == governance, "Golff:!governance");
         swap2GOFRouting = _path;
     }
     function setSwap2Token(address[] memory _path) public{
-        require(msg.sender == governance, "golff:!governance");
+        require(msg.sender == governance, "Golff:!governance");
         swap2TokenRouting = _path;
     }
 }

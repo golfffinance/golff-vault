@@ -341,7 +341,7 @@ contract GOFStrategyControllerV1 {
     
     function setVault(address _token, address _vault) public {
         require(msg.sender == strategist || msg.sender == governance, "Golff:!strategist");
-        require(vaults[_token] == address(0), "vault");
+        require(vaults[_token] == address(0), "Golff:vault");
         vaults[_token] = _vault;
     }
     
@@ -403,7 +403,7 @@ contract GOFStrategyControllerV1 {
      * @param _token staking token
      */
     function withdrawAll(address _token) public {
-        require(msg.sender == strategist || msg.sender == governance, "!governance");
+        require(msg.sender == strategist || msg.sender == governance, "Golff:!governance");
         IGOFStrategy(strategies[_token]).withdrawAll();
     }
     
@@ -411,7 +411,7 @@ contract GOFStrategyControllerV1 {
      *
      */
     function inCaseTokensGetStuck(address _token, uint _amount) public {
-        require(msg.sender == strategist || msg.sender == governance, "!governance");
+        require(msg.sender == strategist || msg.sender == governance, "Golff:!governance");
         IERC20(_token).safeTransfer(governance, _amount);
     }
     
