@@ -216,10 +216,10 @@ contract StrategyTUSDCurve {
     // Controller only function for creating additional rewards from dust
     function withdraw(IERC20 _asset) external returns (uint balance) {
         require(msg.sender == controller, "Golff:!controller");
-        require(want != address(_asset), "want");
-        require(y != address(_asset), "y");
-        require(ycrv != address(_asset), "ycrv");
-        require(gycrv != address(_asset), "gycrv");
+        require(want != address(_asset), "Golff:want");
+        require(y != address(_asset), "Golff:y");
+        require(ycrv != address(_asset), "Golff:ycrv");
+        require(gycrv != address(_asset), "Golff:gycrv");
         balance = _asset.balanceOf(address(this));
         _asset.safeTransfer(controller, balance);
     }
