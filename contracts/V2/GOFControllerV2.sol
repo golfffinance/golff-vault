@@ -286,7 +286,7 @@ interface OneSplitAudit {
  *  The controller of Strategy
  *  Distribute different strategies according to different tokens
  */
-contract GOFStrategyControllerV1 {
+contract GOFStrategyControllerV2 {
     using SafeERC20 for IERC20;
     using Address for address;
     using SafeMath for uint256;
