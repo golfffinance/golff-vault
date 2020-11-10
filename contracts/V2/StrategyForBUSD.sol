@@ -167,12 +167,12 @@ interface ICurveFi {
   ) external;
 }
 
-contract StrategyFortube {
+contract StrategyFortubeBUSD {
     using SafeERC20 for IERC20;
     using Address for address;
     using SafeMath for uint256;
     
-    address constant public want = address(0x4Fabb145d64652a948d72533023f6E7A623C7C53); //usdc
+    address constant public want = address(0x4Fabb145d64652a948d72533023f6E7A623C7C53); //BUSD
     address constant public output = address(0x1FCdcE58959f536621d76f5b7FfB955baa5A672F); //for
     address constant public unirouter = address(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D);
     address constant public weth = address(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2); // used for for <> weth <> usdc route

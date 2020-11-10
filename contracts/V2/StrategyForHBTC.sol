@@ -167,7 +167,7 @@ interface ICurveFi {
     int128 from, int128 to, uint256 _from_amount, uint256 _min_to_amount
   ) external;
 }
-contract StrategyFortube {
+contract StrategyFortubeHBTC {
     using SafeERC20 for IERC20;
     using Address for address;
     using SafeMath for uint256;

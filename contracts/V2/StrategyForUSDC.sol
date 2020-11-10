@@ -162,7 +162,7 @@ interface ForReward{
     function claimReward() external;
 }
 
-contract StrategyFortube {
+contract StrategyFortubeUSDC {
     using SafeERC20 for IERC20;
     using Address for address;
     using SafeMath for uint256;
